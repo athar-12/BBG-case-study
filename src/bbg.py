@@ -50,6 +50,9 @@ def generate_currency_data(json_data):
        :param json_data: currencies json object
        :return: dataframe with currencies data. columns = [date, currency, conversion_rate]
     """
+    # Load config file
+    config = open('Config/config.json')
+    config_data = json.loads(config.read())
 
     # convert dictionary to dataframe
     df = pd.DataFrame.from_dict({(i, j): json_data[i][j]
@@ -71,7 +74,7 @@ def generate_currency_data(json_data):
     # melt data frame to all currencies in one column and conversion rates in other according to dates.
     currency_data = df.melt(id_vars=['Date'])
     currency_data.columns = ['date', 'currency', 'conversion_rate']
-    currency_data['base_currency'] = data['baseCurrency']
+    currency_data['base_currency'] = config_data['baseCurrency']
 
     return currency_data
 
