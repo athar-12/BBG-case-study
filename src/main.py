@@ -11,7 +11,7 @@ if __name__ == '__main__':
     print("Reading Config.....\n")
 
     # Read config file
-    file = open('../Config/config.json', "r")
+    file = open('./Config/config.json', "r")
     data = json.loads(file.read())
 
     print("Reading Input Files.......\n")

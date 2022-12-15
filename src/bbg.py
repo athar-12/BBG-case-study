@@ -163,6 +163,10 @@ def calculate_kpis(orders):
         :return: dataframe with calculate KPIs. Exchange rate, Total revenue, Revenue by cotegory, CRR .
     """
 
+    # Load config file
+    config = open('Config/config.json')
+    config_data = json.loads(config.read())
+
     # calculate total revenue for each country on daily basis
     kpi_df = orders.groupby(['date', 'country'], as_index=False).agg(
         {'total_revenue': 'sum', 'conversion_rate': 'max', 'adv_cost_eur': 'max'})
@@ -187,6 +191,12 @@ def calculate_kpis(orders):
     # Calculate revenue share per category after discount
     kpi_df['revenue_share_per_category_after_discount'] = kpi_df['total_revenue_by_category'] / kpi_df[
         'total_revenue'] * 100
+
+    # Round columns values to 2 decimal places
+    kpi_df = kpi_df.round(2)
+
+    # Add base currency column to dataframe
+    kpi_df['base_currency'] = config_data['baseCurrency']
 
     return kpi_df
 
