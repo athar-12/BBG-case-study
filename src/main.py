@@ -13,11 +13,13 @@ if __name__ == '__main__':
     # Read config file
     file = open('./Config/config.json', "r")
     data = json.loads(file.read())
+    print("Done!\n")
 
     print("Reading Input Files.......\n")
 
     # Load IDs data in dataframe
     ids_df = pd.read_csv(data['IdFilePath'], header=0, sep=';')
+    print("Done!\n")
 
     # Load orders data in dataframe
     orders_df = pd.read_excel(data["OrderDataFilePath"], header=0)
@@ -39,6 +41,7 @@ if __name__ == '__main__':
 
     # get exhanges rates
     currency_json = bbg.fetch_exchange_rates(from_date, to_date, currencies_str)
+    print("Done!\n")
 
     # add key, value to dictionary
     currency_dict = {"qoutes": currency_json['quotes']}
@@ -47,21 +50,24 @@ if __name__ == '__main__':
 
     # convert currency dictionary to dataframe
     currency_df = bbg.generate_currency_data(currency_dict)
+    print("Done!\n")
 
     print("Transforming data.......\n")
 
     # apply transformations on data
     orders_transformed = bbg.transform_data(orders_df, ids_df, cost_df, currency_df)
+    print("Done!\n")
 
     print("calculating KPIs.......\n")
 
     # calculate all required KPIs
     kpis = bbg.calculate_kpis(orders_transformed)
+    print("Done!\n")
 
     # dump data to google sheets
     try:
         print("Writing data to google sheets.......\n")
         bbg.write_data_to_gsheets(kpis)
-        print("Data dumper to google sheets!\n")
+        print("Data dumped to google sheets!\n")
     except:
         print("Fail to write in google sheets!\n")
