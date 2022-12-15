@@ -1,0 +1,7 @@
+json
+numpy
+pandas
+requests
+numpy
+re
+pygsheets

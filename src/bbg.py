@@ -9,7 +9,7 @@ import pygsheets
 
 def fetch_exchange_rates(start_date, end_date, currencies_list):
     """
-       fetch_exchange_rates fetches exhange rates from API  (api.apilayer.com/currency_data)
+       fetch_exchange_rates fetches exchange rates from API  (api.apilayer.com/currency_data)
        for given dates and currencies list.
 
        :param start_date: date from fetch exchange rates should be fetched
@@ -63,7 +63,7 @@ def generate_currency_data(json_data):
     df = df.reset_index()
 
     # add EUR to EUR conversion rate
-    df['EUR'] = 1.0
+    df['EUR'] = 1.00
 
     # change column names
     df.columns = ['Key', 'Date', 'HUF', 'CZK', 'GBP', 'EUR']
@@ -81,6 +81,8 @@ def generate_currency_data(json_data):
 
 def transform_data(orders, shops_mapping, cost_data, currency_data):
     """
+        transform_data cleans data set and apply required transformations.
+
         :param orders: orders dataframe from orders-data excel file.
         :param shops_mapping: IDs csv file dataframe
         :param cost_data: cost dataframe from cost-data excel file.
@@ -158,6 +160,8 @@ def transform_data(orders, shops_mapping, cost_data, currency_data):
 
 def calculate_kpis(orders):
     """
+        calculate_kpis calculate required KPIs
+
         :param orders: tranformed data frame with cost and orders information.
 
         :return: dataframe with calculate KPIs. Exchange rate, Total revenue, Revenue by cotegory, CRR .
