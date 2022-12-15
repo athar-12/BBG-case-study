@@ -6,6 +6,12 @@ An ETL pipeline to fetch exchange rates data from API, transform data to calcula
 
 ##   Technology: Python 
 
+## Code file path
+```
+/src/main.py
+/src/bbg.py
+```
+
 ## Required Packages
 The required packages are mentioned in requirements.txt file.
 
