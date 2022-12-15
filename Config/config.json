@@ -1,0 +1,11 @@
+{
+  "API_KEY": "DvBiBi07sN00ThDUssam0XLlcWUju3yo",
+  "IdFilePath": "/Users/atharabbas/Downloads/IDs.csv",
+  "CostDataFilePath": "/Users/atharabbas/Downloads/Cost-Data.xlsx",
+  "OrderDataFilePath": "/Users/atharabbas/Downloads/Order-Data.xlsx",
+  "baseCurrency": "EUR",
+  "ExchangeRateEndPoint": "https://api.apilayer.com/currency_data/timeframe?start_date={}&end_date={}&source={}&currencies={}",
+  "google_credentials": "/Users/atharabbas/Downloads/neon-infinity-335913-bd26ef908646.json",
+  "GoogleSheetName": "BBG",
+  "GoogleWorksheet": "BBG-case-study"
+}
